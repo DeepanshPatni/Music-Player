@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"> -->
+    <style>
+        body {
+            background-image: linear-gradient(to right, rgb(153, 30, 133), rgb(22, 148, 189));
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        .outer {
+            text-align: center;
+            backdrop-filter: blur(50rem);
+            background-color: rgba(255, 255, 255, 0.612);
+            z-index: 1;
+            width: 25rem;
+            height: 80vh;
+            border-radius: 3%;
+            margin: auto;
+            margin-top: 5rem;
+        }
+        img {
+            border-radius: 50%;
+            width: 7rem;
+        }
+        .img{
+            height: 7rem;
+            object-fit: cover;
+        }
+        .artist{
+            margin-bottom: 1.8rem;
+            font-size: 1.8rem;
+        }
+
+        .song-name{
+            font-size: 2rem;
+        }
+
+        button {
+            background-color: rgb(188,192,219);
+            backdrop-filter: blur(50rem);
+            border: none;
+            font-size: 2rem;
+            color: black;
+            letter-spacing: 0;
+        }
+        svg, img{
+            background-color: rgb(188,192,219);
+        }
+
+        /* .play {
+            color: white;
+            padding-left: 9px;
+            padding-top: 4px;
+            background-color: black;
+            border-radius: 50%;
+            margin-left: 3px;
+        } */
+        .slider{
+            width: 60%;
+        }
+        #volume-control{
+            width: 35%;
+            margin-right: 0.5rem;
+            margin-left: 0.1rem;
+        }
+        .volume{
+            width: 102%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0;
+        }
+        .control{
+            text-align: center;
+            display: flex;
+            width: 105%;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .time{
+            font-weight: 450;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            padding: 0.4rem;
+            font-size: 1.3rem;
+        }
+        .forward, .rewind{
+            width: 3rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer">
+        <h2 class="tracknum" style="padding-top: 2rem; font-size: 1.8rem;">Playing music 1 of 6</h2>
+        <img class="img" src="images/Sky Full of Stars.jpg" alt="song-img">
+        <h1 class="song-name">Sky Full Of Stars</h1>
+        <h2 class="artist">Coldplay</h2>
+        <div class="volume">
+            <span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-volume-down-fill" viewBox="0 0 16 16">
+                    <path d="M9 4a.5.5 0 0 0-.812-.39L5.825 5.5H3.5A.5.5 0 0 0 3 6v4a.5.5 0 0 0 .5.5h2.325l2.363 1.89A.5.5 0 0 0 9 12V4zm3.025 4a4.486 4.486 0 0 1-1.318 3.182L10 10.475A3.489 3.489 0 0 0 11.025 8 3.49 3.49 0 0 0 10 5.525l.707-.707A4.486 4.486 0 0 1 12.025 8z"/>
+                </svg>
+            </span>
+            <input type="range" id="volume-control" class="form-range">
+            <span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-volume-up-fill" viewBox="0 0 16 16">
+                    <path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/>
+                    <path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"/>
+                    <path d="M8.707 11.182A4.486 4.486 0 0 0 10.025 8a4.486 4.486 0 0 0-1.318-3.182L8 5.525A3.489 3.489 0 0 1 9.025 8 3.49 3.49 0 0 1 8 10.475l.707.707zM6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06z"/>
+                </svg>
+            </span>
+        </div>
+        <br>
+        <div class="control">
+            <button><img class="rewind" src="images/rewind.svg" alt=""></button>
+            <button id="prev">
+                <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" fill="currentColor" class="bi bi-skip-backward-fill" viewBox="0 0 16 16">
+                    <path d="M.5 3.5A.5.5 0 0 0 0 4v8a.5.5 0 0 0 1 0V8.753l6.267 3.636c.54.313 1.233-.066 1.233-.697v-2.94l6.267 3.636c.54.314 1.233-.065 1.233-.696V4.308c0-.63-.693-1.01-1.233-.696L8.5 7.248v-2.94c0-.63-.692-1.01-1.233-.696L1 7.248V4a.5.5 0 0 0-.5-.5z"/>
+                </svg>
+            </button>
+            <button class="play">
+                <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                    <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+                </svg>
+            </button>
+            <button id="next">
+                <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" fill="currentColor" class="bi bi-skip-forward-fill" viewBox="0 0 16 16">
+                <path d="M15.5 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V8.753l-6.267 3.636c-.54.313-1.233-.066-1.233-.697v-2.94l-6.267 3.636C.693 12.703 0 12.324 0 11.693V4.308c0-.63.693-1.01 1.233-.696L7.5 7.248v-2.94c0-.63.693-1.01 1.233-.696L15 7.248V4a.5.5 0 0 1 .5-.5z"/>
+              </svg>
+            </button>
+            <button><img class="forward" src="images/forward.svg" alt=""></button>
+            <br>
+        </div>
+        <span class="time" id="initial-time">0:00</span><input type="range" id="time" class="slider" value="0"><span class="time" id="total-time">0:00</span>
+    </div>
+
+   <!-- /////////////////////////////////////////////// -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script>
+        var a = 0;
+        var audio = new Audio("songs/Sky Full Of Stars.mp3");
+        var state = 'play';
+
+        var val;
+        $("#volume-control").on("change", function () {
+            val = document.getElementById("volume-control").value;
+            audio.volume = val / 100;
+        });
+
+        function Songs(num, name, artist) {
+            this.num = num;
+            this.name = name;
+            this.artist = artist;
+        }
+
+        var s = [];
+
+        s[0] = new Songs(1, "Sky Full Of Stars", "Coldplay");
+        s[1] = new Songs(2, "Midnight City","M83");
+        s[2] = new Songs(3, "Counting Stars", "One Republic");
+        s[3] = new Songs(4, "Viva La Vida", "Coldplay");
+        s[4] = new Songs(5, "The Nights", "Avicii");
+        s[5] = new Songs(6, "Yellow", "Coldplay");
+        
+
+        $(".play").click(function () {
+            if (state === 'play') {
+                // audio = new Audio("songs/" + s[a].name + ".mp3");
+                // audio.play();
+                state = 'pause';
+                audio.play();
+                $(".play").html(`<svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor" class="bi bi-pause-fill" viewBox="0 0 16 16">
+                                    <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/>
+                                </svg>`);
+            }
+            else if (state === 'pause') {
+                audio.pause();
+                state = 'play';
+                $(".play").html(`<svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                    <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+                </svg>`);
+            }
+        });
+
+        // $("#volume-control").on("change",function() {
+        //     audio.volume = event.currentTarget.value/100;
+        // });
+
+        function trackChange() {
+            $(".tracknum").text("Playing music " + s[a].num + " of " + s.length);
+            $(".song-name").text(s[a].name);
+            $(".artist").text(s[a].artist);
+            audio = new Audio("songs/" + s[a].name + ".mp3");
+            $(".img").attr("src","images/" +s[a].name+".jpg");
+            audio.play();
+            state = 'pause'; 
+        }
+
+        function nextTrack()
+        {
+            if (a == s.length - 1) {
+                a = -1;
+                nextTrack();
+            }
+            else{
+            audio.pause();
+            a++;
+            trackChange();
+            }
+        }
+        $("#next").click(function (){
+            nextTrack();
+        });
+
+        $("#prev").click(function () {
+            if (a === 0) {}
+            else 
+            {
+                audio.pause();
+                a--;
+                trackChange();
+            }
+        });
+
+        
+        
+        const update = setInterval(function(){
+            $("#total-time").text(convertSecsToMin(Math.floor(audio.duration)));
+            $("#initial-time").text(convertSecsToMin(Math.floor(audio.currentTime)));
+            document.querySelector("#time").value = (audio.currentTime/audio.duration) * 100;
+            if(audio.ended == true)
+            {
+                nextTrack();
+            }
+        },1000);
+        // clearInterval(update);
+
+        $("#time").on("change",function(){
+            audio.currentTime = ( document.querySelector("#time").value * audio.duration)/100;
+        });
+
+        var time;
+        function convertSecsToMin(secs)
+        {
+            var s = secs;
+            var min = Math.floor(s/60);
+            s = secs%60;
+            time = min + ":" + s;
+            if(s>=0 && s<=9)
+            {
+                time = min + ":0" + s;
+            }
+            else{
+                time = min + ":" + s;
+            }
+            return time;
+        }
+
+        $(".forward").click(function(){
+            audio.currentTime += 10;
+        });
+
+        $(".rewind").click(function(){
+            audio.currentTime -= 10;
+        });
+
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
